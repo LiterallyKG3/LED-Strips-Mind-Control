@@ -3,8 +3,8 @@ import time
 import led
 import uasyncio as asyncio
 
-SSID = "test"
-PASSWORD = "WASD1414"
+SSID = "ENTERSSIDHERE"
+PASSWORD = "ENTERPASSWORDHERE"
 checkInterval = 5
 connectionTimeout = 120
 
