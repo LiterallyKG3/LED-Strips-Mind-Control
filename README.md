@@ -8,7 +8,7 @@ I first had to record the IR frequencies for each of the buttons my strip's remo
   
   
 Credit:  
-[IR Libraries](https://github.com/peterhinch/micropython_ir)  
-[Pillow](https://pypi.org/project/pillow/)  
+[IR Libraries](https://github.com/peterhinch/micropython_ir)   
 [NumPy](https://numpy.org)  
+[Pillow](https://pypi.org/project/pillow/)  
 [mss](https://pypi.org/project/mss/)
