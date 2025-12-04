@@ -1,5 +1,3 @@
-# Future Plans
-
 - Smoother color transitions
 
 - Try different NumPy functions
