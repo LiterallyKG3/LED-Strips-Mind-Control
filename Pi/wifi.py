@@ -9,17 +9,21 @@ checkInterval = 5
 connectionTimeout = 120
 
 wlan = network.WLAN(network.STA_IF) # create station
+ip = wlan.ifconfig()[0]
 
 
 async def connect():
     wlan.active(True) # enable Wi-Fi radio
     
     if wlan.isconnected():
-        print("Already connected :D IP:", wlan.ifconfig()[0])
-        led.led_state = "wifi_connected"
-        return
+        if ip != "0.0.0.0":
+            print("Already connected :D IP:", ip)
+            led.led_state = "wifi_connected"
+            return
     
+    print("Connecting to Wi-Fi...")
     wlan.connect(SSID, PASSWORD)
+    led.led_state = "wifi_connecting"
     start = time.time()
     
     while not wlan.isconnected():
@@ -27,19 +31,17 @@ async def connect():
             print("Failed to connect within timeout.")
             led.led_state = "error"
             return
-        
-        print("Connecting to Wi-Fi...")
-        led.led_state = "wifi_connecting"
         await asyncio.sleep(1)
-            
-        print("Connected :3 IP:", wlan.ifconfig()[0])
-        led.led_state = "wifi_connected"
+        
+    await asyncio.sleep(0.5)
+    print("Connected :3 IP:", ip)
+    led.led_state = "wifi_connected"
 
 
 async def monitor():
     while True:
-        if not wlan.isconnected():
+        if not wlan.isconnected() or ip == "0.0.0.0":
             print("Wi-Fi disconnected. Attempting reconnection...")
-            await connect()
             led.led_state = "error"
+            await connect()
         await asyncio.sleep(checkInterval)
