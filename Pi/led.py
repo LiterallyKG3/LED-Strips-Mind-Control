@@ -35,12 +35,6 @@ async def led_manager():
                 await asyncio.sleep(0.5)
             await asyncio.sleep(3)
             
-        elif s == "server_closed":
-            led.on()
-            await asyncio.sleep(0.05)
-            led.off()
-            await asyncio.sleep(0.05)
-            
         elif s == "ir_transmitting":
             for _ in range(2):
                 led.on()

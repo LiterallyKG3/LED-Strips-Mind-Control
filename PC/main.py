@@ -1,21 +1,22 @@
-import time
-import requests
+import asyncio
 import sendrgb
 import getcolor
 
-retryDelay = 1
-updateInterval = 0.05
+UPDATE_INTERVAL = 0.01
 
-while True:
-    try:
-        r, g, b = getcolor.getcolor()
-        print("RGB: ", r, g, b)
-        sendrgb.sendrgb(r, g, b)
+async def main():
+        asyncio.create_task(sendrgb.discover_pico())
 
-    except requests.exceptions.RequestException as e:
-        print("Error sending to Pi:", e)
-        print(f"Retrying in {retryDelay} seconds...")
-        time.sleep(retryDelay)
-        continue
+        last_rgb = None
+        while True:
+                r, g, b = getcolor.getcolor()
 
-    time.sleep(updateInterval)
+                if last_rgb != (r, g, b):
+                        print("RGB:", r, g, b)
+                        await sendrgb.sendrgb(r, g, b)
+                        last_rgb = (r, g, b)
+
+                await asyncio.sleep(UPDATE_INTERVAL)
+
+if __name__ == "__main__":
+    asyncio.run(main())

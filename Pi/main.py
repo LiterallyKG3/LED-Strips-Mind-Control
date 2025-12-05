@@ -8,6 +8,7 @@ async def main():
     asyncio.create_task(led.led_manager())
     asyncio.create_task(wifi.connect())
     asyncio.create_task(wifi.monitor())
+    asyncio.create_task(server.broadcast_ip())
     asyncio.create_task(server.start_server())
     asyncio.create_task(ir_t.main())
     
