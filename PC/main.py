@@ -3,7 +3,7 @@ import requests
 import sendrgb
 import getcolor
 
-retryDelay = 2
+retryDelay = 1
 updateInterval = 0.05
 
 while True:

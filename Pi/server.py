@@ -1,4 +1,5 @@
 import led
+from wifi import wlan
 import uasyncio as asyncio
 
 last_rgb = None
@@ -9,9 +10,11 @@ async def handle_client(reader, writer):
     
     try:
         request = await reader.read(1024)
-        request = request.decode()
+        if not request:
+            await writer.aclose()
+            return 
         
-        print("Incoming Request:")
+        request = request.decode()
 
         if "rgb=" in request:
             try:
@@ -36,8 +39,28 @@ async def handle_client(reader, writer):
 
 async def start_server():
     
-    print("Server starting...")
-    server = await asyncio.start_server(handle_client, "0.0.0.0", 80)
-    print("Server running!")
-    led.led_state = "server_ready"
-    await server.wait_closed()
+    while not wlan.isconnected():
+        print("Server waiting for Wi-Fi...")
+        led.led_state = "wifi_connecting"
+        await asyncio.sleep(1)
+    
+    while True:
+        try:
+            print("Server starting...")
+            server = await asyncio.start_server(handle_client, "0.0.0.0", 80)
+            print("Server running!")
+            led.led_state = "server_ready"
+            
+            while wlan.isconnected():
+                await asyncio.sleep(1)
+                
+            print("Wi-Fi disconnected. Closing server...")
+            led.led_state = "server_closed"
+            server.close()
+            await server.wait_closed()
+            await asyncio.sleep(1)
+            
+        except Exception as e:
+            print("Server error:", e)
+            led.led_state = "error"
+            await asyncio.sleep(2)

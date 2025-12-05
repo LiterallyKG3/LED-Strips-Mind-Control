@@ -2,18 +2,17 @@ from machine import Pin
 from ir_tx.nec import NEC
 import server
 import led
-import math
-import time
+from time import ticks_ms, ticks_diff
 import uasyncio as asyncio
 
 # CONFIG
 IR_PIN = 28
 NEC_ADDR = 0x00
 SEND_COOLDOWN = 0.05
-FADE_STEPS = 12
-FADE_MIN_SLEEP = 0.02
-BRIGHTNESS_SMOOTHING = 0.1
-BRIGHT_DEBOUNCE = 0.35
+FADE_STEPS = 3
+FADE_MIN_SLEEP = 0.1
+BRIGHTNESS_SMOOTHING = 0.2
+BRIGHT_DEBOUNCE = 0.2
 
 nec = NEC(Pin(IR_PIN, Pin.OUT))
 
@@ -50,12 +49,12 @@ IR_MAP = {
 }
 
 # states
-last_send = 0.0
+last_send = ticks_ms() - int(SEND_COOLDOWN * 1000)
 current_rgb = (0, 0, 0)
 current_ir_code = None
 strip_on = False
 current_brightness_level = 4 # 1..4 (25%..100%)
-last_brightness_send = 0.0
+last_brightness_send = ticks_ms() - int(BRIGHT_DEBOUNCE * 1000)
 
 # brightness management
 def rgb_luminance(rgb):
@@ -97,29 +96,39 @@ def nearest_color(rgb):
         if dist < best_dist:
             best_dist = dist
             best_code = code
-    print("RGB", rgb , "matched to code", best_code , "with distance", best_dist)
+    # debug print
+    # print("RGB", rgb , "matched to code", best_code , "with distance", best_dist)
     return best_code
 
 # send IR code
 async def send(code):
     global last_send
     
-    now = time.time()
-    if now - last_send < SEND_COOLDOWN:
-        await asyncio.sleep(SEND_COOLDOWN - (now - last_send))
-
-    print("Sending IR:", hex(code))
-    nec.transmit(NEC_ADDR, code)
-    led.led_state = "ir_transmitting"
-    last_send = time.time()
+    now = ticks_ms()
+    elapsed = ticks_diff(now, last_send)
+    cooldown_ms = int(SEND_COOLDOWN * 1000)
     
+    if elapsed < cooldown_ms:
+        await asyncio.sleep((cooldown_ms - elapsed) / 1000)
+        
+    try:
+        # debug print
+        # print("Sending IR:", hex(code))
+        nec.transmit(NEC_ADDR, code)
+        led.led_state = "ir_transmitting"
+        last_send = ticks_ms()
+    except Exception as e:
+        print("IR transmit error:", e)
+        led.led_state = "error"
+    await asyncio.sleep(0.003)
+        
 # ensure ON before sending color
 async def ensure_on():
     global strip_on
     if strip_on:
         return
     await send(IR_ON)
-    await asyncio.sleep(0.12)
+    await asyncio.sleep(0.03)
     strip_on = True
     
 # ensure off
@@ -166,8 +175,10 @@ async def send_brightness(level):
     if level == current_brightness_level:
         return
     
-    now = time.time()
-    if now - last_brightness_send < BRIGHT_DEBOUNCE:
+    now = ticks_ms()
+    debounce_ms = int(BRIGHT_DEBOUNCE * 1000)
+    
+    if ticks_diff(now, last_brightness_send) < debounce_ms:
         return
     
     code = level_to_code(level)
@@ -175,8 +186,8 @@ async def send_brightness(level):
         await ensure_on()
         await send(code)
         current_brightness_level = level
-        last_brightness_send = time.time()
-        await asyncio.sleep(0.12)
+        last_brightness_send = ticks_ms()
+        await asyncio.sleep(0.03)
     
 # update color
 async def update_color(target_rgb):
@@ -200,16 +211,20 @@ async def update_color(target_rgb):
 
     await ensure_on()
     code = nearest_color(smoothed)
-    await fade_to_color(code)
+    if code is not None:
+        await fade_to_color(code)
 
 
 # main loop
 async def main():
-    
     print("IR Transmitter ready")
 
     while True:
         rgb = server.last_rgb
-        if rgb:
-            await update_color(rgb)
-        await asyncio.sleep(0.01)
+        if rgb is not None:
+            try:
+                await update_color(rgb)
+            except Exception as e:
+                print("IR loop error:", e)
+                led.led_state = "error"
+        await asyncio.sleep(0.005)
