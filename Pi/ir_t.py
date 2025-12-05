@@ -112,8 +112,7 @@ async def send(code):
         await asyncio.sleep((cooldown_ms - elapsed) / 1000)
         
     try:
-        # debug print
-        # print("Sending IR:", hex(code))
+        print("Sending IR:", hex(code))
         nec.transmit(NEC_ADDR, code)
         led.led_state = "ir_transmitting"
         last_send = ticks_ms()
@@ -128,7 +127,7 @@ async def ensure_on():
     if strip_on:
         return
     await send(IR_ON)
-    await asyncio.sleep(0.001)
+    await asyncio.sleep(0.0005)
     strip_on = True
     
 # ensure off

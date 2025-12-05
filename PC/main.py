@@ -9,11 +9,12 @@ async def main():
 
         last_rgb = None
         while True:
-                r, g, b = getcolor.getcolor()
+                r, g, b = await getcolor.getcolor()
 
                 if last_rgb != (r, g, b):
                         print("RGB:", r, g, b)
-                        await sendrgb.sendrgb(r, g, b)
+                        await sendrgb.udp(r, g, b)
+                        # await sendrgb.http(r, g, b) # http fallback
                         last_rgb = (r, g, b)
 
                 await asyncio.sleep(UPDATE_INTERVAL)

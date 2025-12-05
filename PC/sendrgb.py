@@ -16,7 +16,6 @@ send_sock.setblocking(False)
 
 discovery_sock = None
 
-
 async def discover_pico():
     global pico_ip, discovery_sock
 
@@ -41,8 +40,7 @@ async def discover_pico():
 
         await asyncio.sleep(DISCOVERY_INTERVAL)
 
-
-async def sendrgb(r, g, b):
+async def udp(r, g, b):
     global pico_ip, last_sent_rgb
 
     if not pico_ip:
@@ -55,6 +53,7 @@ async def sendrgb(r, g, b):
     rgb_bytes = f"{r},{g},{b}".encode()
     try:
         send_sock.sendto(rgb_bytes, (pico_ip, UDP_PORT))
+        print("Package sent")
         last_sent_rgb = rgb_tuple
     except OSError as e:
         print("Error sending RGB:", e)
@@ -62,7 +61,7 @@ async def sendrgb(r, g, b):
 
 '''
 # HTTP fallback
-def sendrgb(r, g, b):
+async def http(r, g, b):
     
     pico_ip = "http://ENTERPICOIPHERE"
 

@@ -1,4 +1,8 @@
-- Build executable file for PC scripts
+- Build executable files for PC scripts
+
+- Revamp getcolor.py
+
+- Polish ir_t.py
 
 - Music Mode™ (sync LEDs to album cover, turns to FADE3 when no music playing)
 

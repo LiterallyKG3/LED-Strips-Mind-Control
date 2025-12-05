@@ -9,7 +9,8 @@ async def main():
     asyncio.create_task(wifi.connect())
     asyncio.create_task(wifi.monitor())
     asyncio.create_task(server.broadcast_ip())
-    asyncio.create_task(server.start_server())
+    asyncio.create_task(server.udp())
+    # asyncio.create_task(server.http()) # http fallback
     asyncio.create_task(ir_t.main())
     
     while True:

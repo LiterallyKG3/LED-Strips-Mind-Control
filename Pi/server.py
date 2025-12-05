@@ -24,6 +24,35 @@ async def broadcast_ip():
             print("IP Broadcast error:", e)
             led.led_state = "error"
             await asyncio.sleep(1)
+    
+async def udp():
+    
+    global last_rgb
+    
+    while not wlan.isconnected():
+        print("Server waiting for Wi-Fi...")
+        led.led_state = "wifi_connecting"
+        await asyncio.sleep(1)
+    
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.bind(('0.0.0.0', UDP_PORT))
+    s.setblocking(False)
+    print("Server Running!")
+    led.led_state = "server_running"
+        
+    while True:
+        try:
+            data, addr = s.recvfrom(1024)
+            r, g, b = map(int, data.decode().split(","))
+            if last_rgb != (r, g, b):
+                last_rgb = (r, g, b)
+                print("Received RGB:", last_rgb)
+        except OSError:
+            await asyncio.sleep(0.001)
+        except Exception as e:
+            print("Server error:", e)
+            led.led_state = "error"
+            await asyncio.sleep(0.1)
 
 '''
 # HTTP server fallback
@@ -60,33 +89,3 @@ async def http(reader, writer):
         
     await writer.aclose()
 '''
-    
-
-async def start_server():
-    
-    global last_rgb
-    
-    while not wlan.isconnected():
-        print("Server waiting for Wi-Fi...")
-        led.led_state = "wifi_connecting"
-        await asyncio.sleep(1)
-    
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.bind(('0.0.0.0', UDP_PORT))
-    s.setblocking(False)
-    print("Server Running!")
-    led.led_state = "server_running"
-        
-    while True:
-        try:
-            data, addr = s.recvfrom(1024)
-            r, g, b = map(int, data.decode().split(","))
-            if last_rgb != (r, g, b):
-                last_rgb = (r, g, b)
-                print("Received RGB:", last_rgb)
-        except OSError:
-            await asyncio.sleep(0.001)
-        except Exception as e:
-            print("Server error:", e)
-            led.led_state = "error"
-            await asyncio.sleep(0.1)
