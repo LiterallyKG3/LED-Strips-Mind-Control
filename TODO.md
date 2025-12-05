@@ -1,9 +1,7 @@
-- Automatic IP grabbing?
+- Build executable file for PC scripts
 
 - Music Mode™ (sync LEDs to album cover, turns to FADE3 when no music playing)
 
-- Add a display (show ip?) & hardware mode switch (for Music Mode™) to the Pi
-
-- Build standalone executables for the PC scripts
+- Add a hardware mode switch (for Music Mode™ and getcolor methods) to the Pi
 
 - Make a tiny box for the Pi

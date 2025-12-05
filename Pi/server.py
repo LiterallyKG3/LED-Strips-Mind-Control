@@ -1,10 +1,34 @@
 import led
+import socket
 from wifi import wlan
 import uasyncio as asyncio
 
+UDP_PORT = 6006
+BROADCAST_PORT = 5005
 last_rgb = None
 
-async def handle_client(reader, writer):
+async def broadcast_ip():
+    while not wlan.isconnected():
+        await asyncio.sleep(1)
+        
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    ip = wlan.ifconfig()[0]
+    print("Broadcasting IP...")
+    
+    while True:
+        try:
+            s.sendto(ip.encode(), ('255.255.255.255', BROADCAST_PORT))
+            await asyncio.sleep(1)
+        except Exception as e:
+            print("IP Broadcast error:", e)
+            led.led_state = "error"
+            await asyncio.sleep(1)
+
+'''
+# HTTP server fallback
+
+async def http(reader, writer):
     
     global last_rgb
     
@@ -35,32 +59,34 @@ async def handle_client(reader, writer):
         led.led_state = "error"
         
     await writer.aclose()
+'''
     
 
 async def start_server():
+    
+    global last_rgb
     
     while not wlan.isconnected():
         print("Server waiting for Wi-Fi...")
         led.led_state = "wifi_connecting"
         await asyncio.sleep(1)
     
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.bind(('0.0.0.0', UDP_PORT))
+    s.setblocking(False)
+    print("Server Running!")
+    led.led_state = "server_running"
+        
     while True:
         try:
-            print("Server starting...")
-            server = await asyncio.start_server(handle_client, "0.0.0.0", 80)
-            print("Server running!")
-            led.led_state = "server_ready"
-            
-            while wlan.isconnected():
-                await asyncio.sleep(1)
-                
-            print("Wi-Fi disconnected. Closing server...")
-            led.led_state = "server_closed"
-            server.close()
-            await server.wait_closed()
-            await asyncio.sleep(1)
-            
+            data, addr = s.recvfrom(1024)
+            r, g, b = map(int, data.decode().split(","))
+            if last_rgb != (r, g, b):
+                last_rgb = (r, g, b)
+                print("Received RGB:", last_rgb)
+        except OSError:
+            await asyncio.sleep(0.001)
         except Exception as e:
             print("Server error:", e)
             led.led_state = "error"
-            await asyncio.sleep(2)
+            await asyncio.sleep(0.1)
