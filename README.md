@@ -87,7 +87,7 @@ The Pico's root directory should now look like:
 ├── led.py  
 ├── main.py  
 ├── server.py  
-└──wifi.py
+└── wifi.py
 ```
 
 Reboot the Pico when done.
