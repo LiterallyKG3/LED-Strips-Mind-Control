@@ -35,7 +35,7 @@ graph LR;
 - Automatic IP Broadcast and discovery
 - Customizable IR transmit values
 - Smooth fade transitions between colors
-- LED Strip Brightness Control
+- Brightness Control
 - LED States on the Raspberry Pi Pico W
 <br><br><br><br><br><br>
 
@@ -43,14 +43,13 @@ graph LR;
 # Requirements
 ### Hardware
 - PC
-- Raspberry Pi Pico W (doesn't matter if it's the second one)
+- Raspberry Pi Pico W (doesn't matter if it's the second one) **with pin headers soldered**
 - IR Transmitter Module
 - IR Receiver Module (For learning your remote)
+- Jumper Wires (For connecting the modules)
 - Generic IR-controlled LED Strip (NEC-8 protocol in this repo, but easily replaceable)
 - LED Strip Remote
-- Duct Tape (Optional)
-
-<br>
+<br><br>
 
 ### Software
 - Python 3.12+
@@ -82,7 +81,8 @@ Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder:
 - main.py
 - server.py
 - wifi.py
-  
+<br>
+
 The Pico's root directory should now look like:  
 ```
 /  
@@ -93,7 +93,8 @@ The Pico's root directory should now look like:
 ├── main.py  
 ├── server.py  
 └── wifi.py
-```
+```  
+<br>
 
 Reboot the Pico when done.
 <br><br><br>
@@ -119,6 +120,10 @@ Pin 38 (GND) → GND
 Pin 34 (GP28) → DATA or IN  
 ```
 
+> [!WARNING]
+> You'll need to change `IR_PIN` in `ir_r` if you connect DATA to another GPIO pin
+<br>
+
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
 <br><br><br>
 
@@ -127,6 +132,7 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 
 >[!NOTE]
 > If your strip doesn't use NEC-8, change `from ir_rx.nec import NEC_8` in `ir_r` to the protocol your LED Strip uses.
+<br>
 
 Take the captured codes and replace the existing ones in `ir_t.py`.
 <br><br><br>
@@ -146,7 +152,12 @@ Pin 38 (GND) → GND
 Pin 34 (GP28) → DATA or IN  
 ```
 
-You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
+> [!WARNING]
+> You'll need to change `IR_PIN` in `ir_t` if you connect DATA to another GPIO pin
+<br>
+
+You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)  
+<br>
 
 Make sure the transmitter points at the LED Strip's IR receiver.
 <br><br><br>
@@ -159,6 +170,7 @@ Connect USB. The Pico will boot and wait for incoming RGB values.
 Download everything inside the repo's `PC/` folder.  
 
 Open the directory in your IDE and run `main.py`.  
+<br>
 
 The PC will detect the Pico on LAN and start sending RGB values.  
 
