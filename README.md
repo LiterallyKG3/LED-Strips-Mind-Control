@@ -55,10 +55,9 @@ graph LR;
 - MicroPython firmware for the Pico W
 - Windows (Linux not supported yet)
 - Python Packages:
-  - `numpy`
   - `pillow`
+  - `numpy`
   - `mss`
-  - `pystray`
 
 
 ## Setup:
@@ -125,7 +124,7 @@ Take the captured codes and replace the existing ones in `ir_t.py`.
 ### 6. Install PC dependencies
 Open a terminal and run:  
 
-`pip install numpy pillow mss pystray`  
+`pip install numpy pillow mss`  
 
 ### 7. Wire the IR Transmitter Module
 Recommended wiring:
@@ -155,7 +154,6 @@ The Pico will translate them into IR signals and control the LED Strip.
 
 ## Credits:
 [IR Libraries](https://github.com/peterhinch/micropython_ir)  
-[NumPy](https://numpy.org)  
-[pystray](https://pypi.org/project/pystray/)  
+[NumPy](https://numpy.org)   
 [Pillow](https://pypi.org/project/pillow/)  
 [mss](https://pypi.org/project/mss/)
