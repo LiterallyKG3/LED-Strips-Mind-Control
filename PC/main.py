@@ -3,7 +3,7 @@ import sendrgb
 import getcolor
 import os
 
-UPDATE_INTERVAL = 0.01
+UPDATE_INTERVAL = 0.05
 
 # console theme & header
 COLOR = "\033[38;5;208m"

@@ -32,7 +32,7 @@ async def udp():
     while not wlan.isconnected():
         print("Server waiting for Wi-Fi...")
         led.led_state = "wifi_connecting"
-        await asyncio.sleep(1)
+        await asyncio.sleep(5)
     
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind(('0.0.0.0', UDP_PORT))
