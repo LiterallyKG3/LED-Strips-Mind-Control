@@ -1,5 +1,3 @@
-- Build executable files for PC scripts
-
 - Revamp getcolor.py
 
 - Polish ir_t.py
