@@ -68,7 +68,8 @@ graph LR;
 Download the latest `.uf2` from:  
 https://micropython.org/download/rp2-pico-w/  
 
-Then drag and drop onto the Pico's USB drive.  
+Then drag and drop onto the Pico's USB drive.
+<br><br><br>
 
 ### 2. Upload IR Libraries and Pi Scripts
 Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder:
@@ -93,6 +94,7 @@ The Pico's root directory should now look like:
 ```
 
 Reboot the Pico when done.
+<br><br><br>
 
 ### 3. Configure Pico Wi-Fi
 Using Thonny or mpremote, edit `wifi.py` and add your Wi-Fi name and password:  
@@ -103,7 +105,8 @@ PASSWORD = "ENTERPASSWORDHERE"
 ```
 
 Save the file.
-The PC will automatically detect the Pico via UDP broadcast.  
+The PC will automatically detect the Pico via UDP broadcast.
+<br><br><br>
 
 ### 4. Wire the IR Receiver to the Pico
 Recommended wiring:  
@@ -115,6 +118,7 @@ Pin 34 (GP28) → DATA or IN
 ```
 
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
+<br><br><br>
 
 ### 5. Record your LED Remote's IR Codes
 Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LED remote pointing it at the receiver. 
@@ -123,11 +127,13 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 > If your strip doesn't use NEC-8, change `from ir_rx.nec import NEC_8` in `ir_r` to the protocol your LED Strip uses.
 
 Take the captured codes and replace the existing ones in `ir_t.py`.
+<br><br><br>
 
 ### 6. Install PC dependencies
 Open a terminal and run:  
 
-`pip install numpy pillow mss`  
+`pip install numpy pillow mss`
+<br><br><br>
 
 ### 7. Wire the IR Transmitter Module
 Recommended wiring:
@@ -141,9 +147,11 @@ Pin 34 (GP28) → DATA or IN
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
 
 Make sure the transmitter points at the LED Strip's IR receiver.
+<br><br><br>
 
 ### 8. Power the Pico
 Connect USB. The Pico will boot and wait for incoming RGB values.
+<br><br><br>
 
 ### 9. Run the PC client
 Download everything inside the repo's `PC/` folder.  
