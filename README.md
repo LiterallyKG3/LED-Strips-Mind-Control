@@ -1,10 +1,18 @@
+<p align="center">
+  _    ___ ___    ___ _       _           __  __ _         _    ___         _           _ 
+ │ │  │ __│   ╲  ╱ __│ │_ _ _(_)_ __ ___ │  ╲╱  (_)_ _  __│ │  ╱ __│___ _ _│ │_ _ _ ___│ │
+ │ │__│ _││ │) │ ╲__ ╲  _│ '_│ │ '_ (_─< │ │╲╱│ │ │ ' ╲╱ _` │ │ (__╱ _ ╲ ' ╲  _│ '_╱ _ ╲ │
+ │____│___│___╱  │___╱╲__│_│ │_│ .__╱__╱ │_│  │_│_│_││_╲__,_│  ╲___╲___╱_││_╲__│_│ ╲___╱_│
+                               │_│                                                                                                                                          
+</p>
+
+<p align="center">
+  <img src="/assets/demo.gif" width="800">
+</p>
+
 <h2 align="center">
     Turns any generic IR-controlled LED Strip into ambient lighting syncing with the monitor's average color every <ins>~100 milliseconds</ins> using a Microcontroller and an IR Transmitter module.
 </h2>
-
-<p align="center">
-  <img src="/assets/demo.gif" width="1000">
-</p>
 
 
 ## How it works:
