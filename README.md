@@ -2,6 +2,10 @@
     Turns any generic IR-controlled LED Strip into ambient lighting syncing with the monitor's average color every <ins>~100 milliseconds</ins> using a Microcontroller and an IR Transmitter module.
 </h2>
 
+<p align="center">
+  <img src="/assets/demo.gif" width="400">
+</p>
+
 
 ## How it works:
 PC takes a screenshot using **mss** and resizes it with **Pillow** (200x200 by default), then converts the image to a single RGB value using **NumPy** with 3 selectable methods: `mean`, `median` or `dominant` (default: `mean`).  
@@ -114,6 +118,7 @@ Take the captured codes and replace the existing ones in `ir_t.py`.
 
 ### 6. Install PC dependencies
 Open a terminal and run:  
+
 `pip install numpy pillow mss pystray`  
 
 ### 7. Wire the IR Transmitter Module
