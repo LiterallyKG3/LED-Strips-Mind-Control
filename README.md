@@ -11,7 +11,7 @@
 <h2 align="center">
     Turns any generic IR-controlled LED Strip into ambient lighting syncing with the monitor's average color every <ins>~100 milliseconds</ins> using a Microcontroller and an IR Transmitter module
 </h2>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 
 
 # How it works
@@ -27,7 +27,6 @@ graph LR;
     PC-->Pi;
     Pi-->LED;
 ```
-<br><br><br>
 
 
 # Features
@@ -38,7 +37,7 @@ graph LR;
 - Smooth fade transitions between colors
 - LED Strip Brightness Control
 - LED States on the Raspberry Pi Pico W
-<br><br><br>
+<br><br><br><br><br><br>
 
 
 # Requirements
