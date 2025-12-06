@@ -136,6 +136,8 @@ Pin 38 (GND) → GND
 Pin 34 (GP28) → DATA or IN  
 ```
 
+You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
+
 Make sure the transmitter points at the LED Strip's IR receiver.
 
 ### 8. Power the Pico
