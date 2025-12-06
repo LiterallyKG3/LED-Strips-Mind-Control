@@ -50,6 +50,8 @@ graph LR;
 - LED Strip Remote
 - Duct Tape (Optional)
 
+<br>
+
 ### Software
 - Python 3.12+
 - IDE for PC Client (VScode works)
