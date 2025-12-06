@@ -11,9 +11,10 @@
 <h2 align="center">
     Turns any generic IR-controlled LED Strip into ambient lighting syncing with the monitor's average color every <ins>~100 milliseconds</ins> using a Microcontroller and an IR Transmitter module
 </h2>
+<br><br><br><br><br><br><br><br><br>
 
 
-## How it works:
+# How it works
 PC takes a screenshot using **mss** and resizes it with **Pillow** (200x200 by default), then converts the image to a single RGB value using **NumPy** with 3 selectable methods: `mean`, `median` or `dominant` (default: `mean`).  
 
 The RGB value is sent over to a Raspberry Pi Pico W via Wi-Fi.
@@ -26,9 +27,10 @@ graph LR;
     PC-->Pi;
     Pi-->LED;
 ```
+<br><br><br>
 
 
-## Features:
+# Features
 - Selectable RGB grabbing methods
 - UDP (default) & HTTP (fallback) communication between PC and Pi
 - Automatic IP Broadcast and discovery
@@ -36,9 +38,10 @@ graph LR;
 - Smooth fade transitions between colors
 - LED Strip Brightness Control
 - LED States on the Raspberry Pi Pico W
+<br><br><br>
 
 
-## Requirements:
+# Requirements
 ### Hardware
 - PC
 - Raspberry Pi Pico W (doesn't matter if it's the second one)
@@ -58,9 +61,10 @@ graph LR;
   - `pillow`
   - `numpy`
   - `mss`
+<br><br><br>
 
 
-## Setup:
+# Setup
 ### 1. Flash MicroPython to your Pico W  
 Download the latest `.uf2` from:  
 https://micropython.org/download/rp2-pico-w/  
@@ -150,9 +154,10 @@ Open the directory in your IDE and run `main.py`.
 The PC will detect the Pico on LAN and start sending RGB values.  
 
 The Pico will translate them into IR signals and control the LED Strip.
+<br><br><br>
 
 
-## Credits:
+# Credits
 [IR Libraries](https://github.com/peterhinch/micropython_ir)  
 [NumPy](https://numpy.org)   
 [Pillow](https://pypi.org/project/pillow/)  
