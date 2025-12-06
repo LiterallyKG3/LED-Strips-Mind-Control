@@ -5,33 +5,34 @@ import os
 
 UPDATE_INTERVAL = 0.01
 
-# console theme
-GREEN = "\033[32m"
+# console theme & header
+COLOR = "\033[38;5;208m"
 BOLD = "\033[1m"
 RESET = "\033[0m"
 
-def header():
+async def header():
     os.system("title LED-Strips-Mind-Control")
 
-    print(BOLD + GREEN + "==== INITIATING PACKAGE DELIVERY ====" + RESET)
+    print()
+    print(BOLD + COLOR + "==== INITIATING PACKAGE DELIVERY ====" + RESET)
     print()
 
+# main
 async def main():
-    
-    header()
+
+    await header()
 
     asyncio.create_task(sendrgb.discover_pico())
 
     last_rgb = None
 
     while True:
+
         r, g, b = await getcolor.getcolor()
 
         if last_rgb != (r, g, b):
-            print(
-                GREEN + "RGB:" + RESET,
-                f"{BOLD}{r} {g} {b}{RESET}"
-            )
+
+            print(COLOR + "RGB:" + RESET, f"{BOLD}{r} {g} {b}{RESET}")
 
             await sendrgb.udp(r, g, b)
             # await sendrgb.http(r, g, b) # http fallback

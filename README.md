@@ -8,7 +8,8 @@ I first had to record the IR frequencies (found in IR_codes.md) for each of the 
   
   
 Credit:  
-[IR Libraries](https://github.com/peterhinch/micropython_ir)   
+[IR Libraries](https://github.com/peterhinch/micropython_ir)  
+[pystray](https://pypi.org/project/pystray/)
 [NumPy](https://numpy.org)  
 [Pillow](https://pypi.org/project/pillow/)  
 [mss](https://pypi.org/project/mss/)
