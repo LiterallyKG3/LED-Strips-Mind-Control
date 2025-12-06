@@ -25,7 +25,7 @@ async def led_manager():
             led.on()
             await asyncio.sleep(1)
             led.off()
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
 
         elif s == "server_ready":
             for _ in range(2):
@@ -51,5 +51,5 @@ async def led_manager():
 
         else:
             # fallback
-            led.off()
-            await asyncio.sleep(0.5)
+            led.toggle()
+            await asyncio.sleep(0.1)

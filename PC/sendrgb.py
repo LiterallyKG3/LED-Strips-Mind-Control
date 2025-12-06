@@ -1,4 +1,4 @@
-# import request # HTTP fallback
+# import requests # HTTP fallback
 import socket
 import asyncio
 
@@ -62,8 +62,6 @@ async def udp(r, g, b):
 '''
 # HTTP fallback
 async def http(r, g, b):
-    
-    pico_ip = "http://ENTERPICOIPHERE"
 
     rgb = f"{r},{g},{b}"
 

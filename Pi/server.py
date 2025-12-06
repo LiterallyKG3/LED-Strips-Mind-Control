@@ -5,6 +5,7 @@ import uasyncio as asyncio
 
 UDP_PORT = 6006
 BROADCAST_PORT = 5005
+
 last_rgb = None
 
 async def broadcast_ip():
@@ -26,7 +27,6 @@ async def broadcast_ip():
             await asyncio.sleep(1)
     
 async def udp():
-    
     global last_rgb
     
     while not wlan.isconnected():
@@ -58,7 +58,6 @@ async def udp():
 # HTTP server fallback
 
 async def http(reader, writer):
-    
     global last_rgb
     
     try:

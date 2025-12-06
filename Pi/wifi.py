@@ -5,8 +5,8 @@ import uasyncio as asyncio
 
 SSID = "ENTERSSIDHERE"
 PASSWORD = "ENTERPASSWORDHERE"
-checkInterval = 5
-connectionTimeout = 120
+CHECK_INTERVAL = 5
+CONNECTION_TIMEOUT = 120
 
 wlan = network.WLAN(network.STA_IF) # create station
 
@@ -24,7 +24,7 @@ async def connect():
     
     start = time.time()
     while not wlan.isconnected():
-        if time.time() - start > connectionTimeout:
+        if time.time() - start > CONNECTION_TIMEOUT:
             print("Failed to connect within timeout.")
             led.led_state = "error"
             return
@@ -42,4 +42,4 @@ async def monitor():
             print("Wi-Fi disconnected. Reconnecting...")
             led.led_state = "wifi_connecting"
             await connect()
-        await asyncio.sleep(checkInterval)
+        await asyncio.sleep(CHECK_INTERVAL)

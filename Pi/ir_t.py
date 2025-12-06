@@ -9,6 +9,7 @@ import uasyncio as asyncio
 IR_PIN = 28
 NEC_ADDR = 0x00
 SEND_COOLDOWN = 0.1
+FUNCTION_SLEEPS = 0.12
 FADE_STEPS = 3
 FADE_MIN_SLEEP = 0.08
 BRIGHTNESS_SMOOTHING = 0.2
@@ -103,10 +104,9 @@ def nearest_color(rgb):
 
 # send IR code
 async def send(code):
-    
     global last_send
+
     cooldown_ms = int(SEND_COOLDOWN * 1000)
-    
     async with send_lock:
         now = ticks_ms()
         elapsed = ticks_diff(now, last_send)
@@ -121,24 +121,26 @@ async def send(code):
     except Exception as e:
         print("IR transmit error:", e)
         led.led_state = "error"
-    await asyncio.sleep(0.12)
+    await asyncio.sleep(FUNCTION_SLEEPS)
         
 # ensure ON before sending color
 async def ensure_on():
     global strip_on
+
     if strip_on:
         return
     await send(IR_ON)
-    await asyncio.sleep(0.12)
+    await asyncio.sleep(FUNCTION_SLEEPS)
     strip_on = True
     
 # ensure off
 async def ensure_off():
     global strip_on
+
     if not strip_on:
         return
     await send(IR_OFF)
-    await asyncio.sleep(0.12)
+    await asyncio.sleep(FUNCTION_SLEEPS)
     strip_on = False
 
 # step fade between colors
@@ -189,7 +191,7 @@ async def send_brightness(level):
         await send(code)
         current_brightness_level = level
         last_brightness_send = ticks_ms()
-        await asyncio.sleep(0.12)
+        await asyncio.sleep(FUNCTION_SLEEPS)
     
 # update color with brightness smoothing
 async def update_color(target_rgb):
@@ -219,6 +221,7 @@ async def update_color(target_rgb):
 
 # main loop
 async def main():
+    
     print("IR Transmitter ready")
 
     while True:

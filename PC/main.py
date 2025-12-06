@@ -35,7 +35,6 @@ async def main():
             print(COLOR + "RGB:" + RESET, f"{BOLD}{r} {g} {b}{RESET}")
 
             await sendrgb.udp(r, g, b)
-            # await sendrgb.http(r, g, b) # http fallback
 
             last_rgb = (r, g, b)
 
