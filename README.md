@@ -73,7 +73,7 @@ Then drag and drop onto the Pico's USB drive.
 <br><br><br>
 
 ### 2. Upload IR Libraries and Pi Scripts
-Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder.
+Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder to the Pico.
 <br><br>
 
 The Pico's root directory should now look like:  
