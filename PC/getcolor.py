@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 from collections import Counter
 
-async def getcolor(method="mean", resize=(200, 200)):
+def getcolor(method="mean", resize=(200, 200)):
     # method: 'mean', 'median', 'dominant'
     # resize: scale down to increase speed, up to increase accuracy
 

@@ -10,7 +10,7 @@ COLOR = "\033[38;5;208m"
 BOLD = "\033[1m"
 RESET = "\033[0m"
 
-async def header():
+def header():
     os.system("title LED-Strips-Mind-Control")
 
     print()
@@ -20,7 +20,7 @@ async def header():
 # main
 async def main():
 
-    await header()
+    header()
 
     asyncio.create_task(sendrgb.discover_pico())
 
