@@ -28,7 +28,7 @@ async def main():
 
     while True:
 
-        r, g, b = await getcolor.getcolor()
+        r, g, b = getcolor.getcolor()
 
         if last_rgb != (r, g, b):
 
