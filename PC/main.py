@@ -12,6 +12,9 @@ RESET = "\033[0m"
 
 def header():
     os.system("title LED-Strips-Mind-Control")
+    if os.name != "nt":
+        print("\33]0;LED-Strips-Mind-Control\a", end="", flush=True)
+
 
     print()
     print(BOLD + COLOR + "==== INITIATING PACKAGE DELIVERY ====" + RESET)
