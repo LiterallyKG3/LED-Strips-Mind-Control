@@ -1,8 +1,6 @@
-import asyncio
 import mss
 import numpy as np
 from PIL import Image
-from collections import Counter
 
 def getcolor(method="mean", resize=(200, 200)):
     # method: 'mean', 'median', 'dominant'
@@ -28,10 +26,13 @@ def getcolor(method="mean", resize=(200, 200)):
             return r, g, b
 
         elif method == "dominant":
-            pixels = arr.reshape(-1, 3)
-            pixels_tuples = [tuple(p) for p in pixels]
-            most_common = Counter(pixels_tuples).most_common(1)[0][0]
-            r, g, b = most_common
+            palette_img = im.convert('P', palette=Image.ADAPTIVE, colors=8)
+            palette = palette_img.getpalette()
+            color_counts = palette_img.getcolors()
+            dominant_color_index = max(color_counts, key=lambda item: item[0])[1]
+            r = palette[dominant_color_index * 3]
+            g = palette[dominant_color_index * 3 + 1]
+            b = palette[dominant_color_index * 3 + 2]
             return r, g, b
         else:
             raise ValueError("Invalid method, supported methods: 'mean', 'median', or 'dominant'")
