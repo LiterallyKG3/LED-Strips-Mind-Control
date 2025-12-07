@@ -56,6 +56,12 @@ async def udp():
 
 '''
 # HTTP server fallback
+# uncomment this block, and:
+# in Pi/main.py, Replace:
+# asyncio.create_task(server.udp())
+# with:
+# asyncio.create_task(server.run_http_server())
+# to use.
 
 async def http(reader, writer):
     global last_rgb
@@ -87,4 +93,10 @@ async def http(reader, writer):
         led.led_state = "error"
         
     await writer.aclose()
+
+async def run_http_server():
+    server = await asyncio.start_server(http, "0.0.0.0", 80)
+    print("Server running!")
+    led.led_state = "server_ready"
+    await server.wait_closed
 '''

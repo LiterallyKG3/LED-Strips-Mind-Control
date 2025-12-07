@@ -60,6 +60,15 @@ async def udp(r, g, b):
 
 '''
 # HTTP fallback
+# uncomment this block, and:
+# In PC/main.py, Replace:
+# await sendrgb.udp(r, g, b)
+# with:
+# await sendrgb.http(r, g, b)
+# at the top of PC/sendrgb.py, uncomment:
+# # import requests # HTTP fallback
+# to use.
+
 async def http(r, g, b):
 
     rgb = f"{r},{g},{b}"
