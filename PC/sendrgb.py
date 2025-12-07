@@ -36,14 +36,13 @@ async def discover_pico():
             pass
         except Exception as e:
             print("Discovery error:", e)
-        await asyncio.sleep(0.01)
-
         await asyncio.sleep(DISCOVERY_INTERVAL)
 
 async def udp(r, g, b):
     global pico_ip, last_sent_rgb
 
     if not pico_ip:
+        print("Pico IP not discovered yet")
         return
 
     rgb_tuple = (r, g, b)

@@ -2,6 +2,7 @@ import asyncio
 import sendrgb
 import getcolor
 import os
+import sys
 
 UPDATE_INTERVAL = 0.05
 
@@ -44,4 +45,8 @@ async def main():
         await asyncio.sleep(UPDATE_INTERVAL)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n" + BOLD + COLOR + "Exiting..." + RESET)
+        sys.exit(0)

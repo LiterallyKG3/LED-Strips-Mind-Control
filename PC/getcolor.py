@@ -10,7 +10,7 @@ def getcolor(method="mean", resize=(200, 200)):
 
     with mss.mss() as sct:
         # grab monitor screenshot and resize
-        monitor = sct.monitors[1]
+        monitor = sct.monitors[1] if len(sct.monitors) > 1 else sct.monitors[0]
         sct_img = sct.grab(monitor)
         im = Image.frombytes('RGB', sct_img.size, sct_img.rgb).resize((resize))
         arr = np.array(im)
@@ -24,7 +24,7 @@ def getcolor(method="mean", resize=(200, 200)):
         elif method == "median":
             r = int(np.median(arr[:,:,0]))
             g = int(np.median(arr[:,:,1]))
-            b = int(np.median(arr[:,:,1]))
+            b = int(np.median(arr[:,:,2]))
             return r, g, b
 
         elif method == "dominant":

@@ -4,7 +4,7 @@ import time
 
 IR_PIN = 28
 
-def callback(data, addr, ctrl):
+def callback(data, addr):
     if data < 0:
         return
     print("Received code:", hex(data), " addr:", hex(addr))
