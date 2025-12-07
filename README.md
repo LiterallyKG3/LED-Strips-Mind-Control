@@ -70,7 +70,7 @@ Download the latest `.uf2` from:
 https://micropython.org/download/rp2-pico-w/  
 <br>
 Then drag and drop onto the Pico's USB drive.
-<br><br><br>
+<br><br><br><br>
 
 ### 2. Upload IR Libraries and Pi Scripts
 Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder to the Pico.
@@ -87,7 +87,7 @@ The Pico's root directory should now look like:
 ├── server.py  
 └── wifi.py
 ```  
-<br><br><br>
+<br><br><br><br>
 
 ### 3. Configure Pico Wi-Fi
 Using Thonny or mpremote, edit `wifi.py` and add your Wi-Fi name and password:  
@@ -103,7 +103,7 @@ Save the file.
 >[!NOTE]
 > The PC will automatically detect the Pico via UDP broadcast.
 
-<br><br><br>
+<br><br><br><br>
 
 ### 4. Wire the IR Receiver to the Pico
 Recommended wiring:  
@@ -119,7 +119,7 @@ Pin 34 (GP28) → DATA or IN
 <br>
 
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
-<br><br><br>
+<br><br><br><br>
 
 ### 5. Record your LED Remote's IR Codes
 Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LED remote pointing it at the receiver. 
@@ -129,7 +129,7 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 <br>
 
 Take the captured codes and replace the existing ones in `ir_t.py` and then save the file.
-<br><br><br>
+<br><br><br><br>
 
 ### 6. Wire the IR Transmitter Module
 Recommended wiring:
@@ -148,11 +148,11 @@ You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.co
 <br>
 
 Make sure the transmitter points at the LED Strip's IR receiver.
-<br><br><br>
+<br><br><br><br>
 
 ### 7. Power the Pico
 Connect USB. The Pico will boot and wait for incoming RGB values.
-<br><br><br>
+<br><br><br><br>
 
 
 
@@ -160,7 +160,7 @@ Connect USB. The Pico will boot and wait for incoming RGB values.
 Open a terminal and run:  
 
 `pip install numpy pillow mss`
-<br><br><br>
+<br><br><br><br>
 
 ### 9. Run the PC client
 Download everything inside the repo's `PC/` folder.  
@@ -176,7 +176,7 @@ Open the directory in your IDE and run `main.py`.
 The PC will detect the Pico on LAN and start sending RGB values.  
 
 The Pico will translate them into IR signals and control the LED Strip.
-<br><br><br>
+<br><br><br><br>
 
 
 # Credits
