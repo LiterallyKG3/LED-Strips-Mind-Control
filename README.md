@@ -18,7 +18,7 @@
 PC takes a screenshot using **mss** and resizes it with **Pillow** (200x200 by default), then converts the image to a single RGB value using **NumPy** with 3 selectable methods: `mean`, `median` or `dominant` (default: `mean`).  
 
 The RGB value is sent over to a Raspberry Pi Pico W via Wi-Fi.
-The Pi calculates which of the strip's 20 preset color is the closest match (or turns it OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
+The Pi calculates which of the strip's 20 preset color is the closest match (or turns the strip OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
 
 Before this, the IR frequencies for each button on the strip’s remote were recorded (see `IR_codes.md`). These can be remapped easily if your strip uses a different IR protocol. 
 
@@ -137,13 +137,7 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 Take the captured codes and replace the existing ones in `ir_t.py`.
 <br><br><br>
 
-### 6. Install PC dependencies
-Open a terminal and run:  
-
-`pip install numpy pillow mss`
-<br><br><br>
-
-### 7. Wire the IR Transmitter Module
+### 6. Wire the IR Transmitter Module
 Recommended wiring:
 
 ```
@@ -162,8 +156,16 @@ You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.co
 Make sure the transmitter points at the LED Strip's IR receiver.
 <br><br><br>
 
-### 8. Power the Pico
+### 7. Power the Pico
 Connect USB. The Pico will boot and wait for incoming RGB values.
+<br><br><br>
+
+
+
+### 8. Install PC dependencies
+Open a terminal and run:  
+
+`pip install numpy pillow mss`
 <br><br><br>
 
 ### 9. Run the PC client
