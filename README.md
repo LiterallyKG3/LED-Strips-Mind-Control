@@ -87,9 +87,6 @@ The Pico's root directory should now look like:
 ├── server.py  
 └── wifi.py
 ```  
-<br>
-
-Reboot the Pico when done.
 <br><br><br>
 
 ### 3. Configure Pico Wi-Fi
@@ -103,7 +100,9 @@ PASSWORD = "ENTERPASSWORDHERE"
 
 Save the file.
 <br><br>
-The PC will automatically detect the Pico via UDP broadcast.
+>[!NOTE]
+> The PC will automatically detect the Pico via UDP broadcast.
+
 <br><br><br>
 
 ### 4. Wire the IR Receiver to the Pico
@@ -129,7 +128,7 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 > If your strip doesn't use NEC-8, change `from ir_rx.nec import NEC_8` in `ir_r` to the protocol your LED Strip uses.
 <br>
 
-Take the captured codes and replace the existing ones in `ir_t.py`.
+Take the captured codes and replace the existing ones in `ir_t.py` and then save the file.
 <br><br><br>
 
 ### 6. Wire the IR Transmitter Module
@@ -171,6 +170,7 @@ Open the directory in your IDE and run `main.py`.
 
 >[!NOTE]
 > Make sure to allow Python through your firewall so the PC client can communicate with the Pico over your network.
+
 <br>
 
 The PC will detect the Pico on LAN and start sending RGB values.  
