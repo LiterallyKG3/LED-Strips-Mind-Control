@@ -174,6 +174,10 @@ Download everything inside the repo's `PC/` folder.
 Open the directory in your IDE and run `main.py`.  
 <br>
 
+>[!NOTE]
+> Make sure to allow Python through your firewall so the PC client can communicate with the Pico over your network.
+<br>
+
 The PC will detect the Pico on LAN and start sending RGB values.  
 
 The Pico will translate them into IR signals and control the LED Strip.
