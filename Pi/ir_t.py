@@ -114,7 +114,7 @@ async def send(code):
             await asyncio.sleep((cooldown_ms - elapsed) / 1000)
         
     try:
-        print("Sending IR:", hex(code))
+        print("Sending IR code:", hex(code))
         nec.transmit(NEC_ADDR, code)
         led.led_state = "ir_transmitting"
         last_send = ticks_ms()
