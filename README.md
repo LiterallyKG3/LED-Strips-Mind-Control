@@ -18,7 +18,7 @@
 PC takes a screenshot using **mss** and resizes it with **Pillow** (200x200 by default), then converts the image to a single RGB value using **NumPy** with 3 selectable methods: `mean`, `median` or `dominant` (default: `mean`).  
 
 The RGB value is sent over to a Raspberry Pi Pico W via Wi-Fi.
-The Pi calculates which of the strip's 20 preset color is the closest match (or turns the strip OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
+The Pi calculates which of the strip's 20 preset colors (remappable) is the closest match (or turns the strip OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
 
 Before this, the IR frequencies for each button on the strip’s remote were recorded (see `IR_codes.md`). These can be remapped easily if your strip uses a different IR protocol. 
 
