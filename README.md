@@ -56,7 +56,7 @@ graph LR;
 - IDE for PC Client (VScode works)
 - Thonny or mpremote
 - MicroPython firmware for the Pico W
-- Windows (Linux not supported yet)
+- Windows or Linux
 - Python Packages:
   - `pillow`
   - `numpy`
