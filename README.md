@@ -100,8 +100,11 @@ PASSWORD = "ENTERPASSWORDHERE"
 
 Save the file.
 <br><br>
->[!NOTE]
-> The PC will automatically detect the Pico via UDP broadcast.
+The PC will automatically detect the Pico via UDP broadcast.
+<br><br>
+
+>[!IMPORTANT]
+> The Pico has to be connected to the same Wi-Fi network as your PC.
 
 <br><br><br><br>
 
