@@ -68,13 +68,13 @@ graph LR;
 ### 1. Flash MicroPython to your Pico W  
 Download the latest `.uf2` from:  
 https://micropython.org/download/rp2-pico-w/  
-
+<br>
 Then drag and drop onto the Pico's USB drive.
 <br><br><br>
 
 ### 2. Upload IR Libraries and Pi Scripts
 Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder.
-<br>
+<br><br>
 
 The Pico's root directory should now look like:  
 ```
@@ -99,8 +99,10 @@ Using Thonny or mpremote, edit `wifi.py` and add your Wi-Fi name and password:
 SSID = "ENTERSSIDHERE"  
 PASSWORD = "ENTERPASSWORDHERE"  
 ```
+<br>
 
 Save the file.
+<br><br>
 The PC will automatically detect the Pico via UDP broadcast.
 <br><br><br>
 
