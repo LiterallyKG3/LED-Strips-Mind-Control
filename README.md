@@ -73,14 +73,7 @@ Then drag and drop onto the Pico's USB drive.
 <br><br><br>
 
 ### 2. Upload IR Libraries and Pi Scripts
-Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder:
-- lib/
-- ir_r.py
-- ir_t.py
-- led.py
-- main.py
-- server.py
-- wifi.py
+Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder.
 <br>
 
 The Pico's root directory should now look like:  
