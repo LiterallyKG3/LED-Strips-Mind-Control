@@ -1,6 +1,6 @@
 - Music Mode™ (sync LEDs to album cover, turns to FADE3 when no music playing)
 
-- Add more functionality to PC Client (Pause, Build icon, Quit to taskbar)
+- Add more functionality to PC Client (Pause, Build icon, Quit to taskbar, etc)
 
 - Optimize PC Client
 
