@@ -1,5 +1,5 @@
 from machine import Pin
-from ir_rx.nec import NEC_8
+from ir_rx.nec import NEC_8 # Change to desired protocol
 import time
 
 IR_PIN = 28

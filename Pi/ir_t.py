@@ -17,7 +17,7 @@ BRIGHT_DEBOUNCE = 0.25
 
 nec = NEC(Pin(IR_PIN, Pin.OUT))
 
-# IR codes
+# IR codes for ON/OFF, brightness, and FADE3
 IR_ON = 0x40
 IR_OFF = 0x41
 
@@ -26,6 +26,9 @@ BRIGHT_50 = 0x13
 BRIGHT_75 = 0xf
 BRIGHT_100 = 0xb
 
+FADE_3 = 0xd
+
+# Map IR code to (R, G, B) color values
 IR_MAP = {
     0x58: (255, 0, 0), # R0
     0x54: (255, 63, 0), # R1
@@ -58,11 +61,12 @@ current_brightness_level = 4 # 1..4 (25%..100%)
 last_brightness_send = ticks_ms() - int(BRIGHT_DEBOUNCE * 1000)
 send_lock = asyncio.Lock()
 
-# brightness management
+# Calculate brightness (luminance)
 def rgb_luminance(rgb):
     r, g, b = rgb
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 
+# Map luminance value to birghtness level (1..4)
 def luminance_to_level(lum): # 1..4
     if lum < 18:
         return 0
@@ -74,7 +78,8 @@ def luminance_to_level(lum): # 1..4
         return 3
     else:
         return 4
-    
+
+# convert brightness level to IR code
 def level_to_code(level):
     if level == 1:
         return BRIGHT_25
@@ -87,7 +92,7 @@ def level_to_code(level):
     else:
         return None
 
-# find nearest color
+# find the nearest IR code whose color value is nearest to the received RGB tuple
 def nearest_color(rgb):
     r1, g1, b1 = rgb
     best_code = None
@@ -123,7 +128,7 @@ async def send(code):
         led.led_state = "error"
     await asyncio.sleep(FUNCTION_SLEEPS)
         
-# ensure ON before sending color
+# ensure strip is ON before sending color
 async def ensure_on():
     global strip_on
 
@@ -133,7 +138,7 @@ async def ensure_on():
     await asyncio.sleep(FUNCTION_SLEEPS)
     strip_on = True
     
-# ensure off
+# ensure strip is OFF
 async def ensure_off():
     global strip_on
 
@@ -193,7 +198,7 @@ async def send_brightness(level):
         last_brightness_send = ticks_ms()
         await asyncio.sleep(FUNCTION_SLEEPS)
     
-# update color with brightness smoothing
+# smooth transition to new color and brightness
 async def update_color(target_rgb):
     global current_rgb
 
