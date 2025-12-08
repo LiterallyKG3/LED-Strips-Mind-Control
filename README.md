@@ -49,6 +49,7 @@ graph LR;
 - Jumper Wires (For connecting the modules)
 - Generic IR-controlled LED Strip (NEC-8 protocol in this repo, but easily replaceable)
 - LED Strip Remote
+- Duct Tape (Optional)
 <br><br>
 
 ### Software
