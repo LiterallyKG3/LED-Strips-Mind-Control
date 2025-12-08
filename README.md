@@ -80,7 +80,7 @@ Then drag and drop onto the Pico's USB drive.
 
 
 ### 2. Upload IR Libraries and Pi Scripts
-Using Thonny or mpremote, upload everything inside the repo's [`Pi/`](Pi/) folder to the Pico.
+Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder to the Pico.
 <br><br>
 
 The Pico's root directory should now look like:  
@@ -176,7 +176,7 @@ Open a terminal and run:
 <br><br><br><br>
 
 ### 9. Run the PC client
-Download everything inside the repo's [`PC/`](PC/) folder.  
+Download everything inside the repo's `PC/` folder.  
 
 Open the directory in your IDE and run `main.py`.  
 <br>
