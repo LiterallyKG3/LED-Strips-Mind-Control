@@ -180,6 +180,10 @@ The PC will detect the Pico on LAN and start sending RGB values.
 
 The Pico will translate them into IR signals and control the LED Strip.
 <br><br><br><br>
+<p align="left">
+  <img src="/images/setup.png" width="1000">
+</p>
+<br><br><br><br>
 
 
 # Credits
