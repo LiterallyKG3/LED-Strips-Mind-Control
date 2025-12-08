@@ -44,7 +44,7 @@ graph LR;
 ### Hardware
 - PC
 - Raspberry Pi Pico W (doesn't matter if it's the second one) **with pin headers soldered**
-- IR Transmitter Module
+- IR Transmitter Module (3.3V)
 - IR Receiver Module (For learning your remote)
 - Jumper Wires (For connecting the modules)
 - Generic IR-controlled LED Strip (NEC-8 protocol in this repo, but easily replaceable)
