@@ -43,3 +43,7 @@
 
 - QUICK, 0x16
 - SLOW, 0x12
+
+<p align="left">
+  <img src="/images/ir_remote.png" width="400">
+</p>
