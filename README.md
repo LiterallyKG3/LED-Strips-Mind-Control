@@ -21,7 +21,7 @@ PC takes a screenshot using **mss** and resizes it with **Pillow** (200x200 by d
 The RGB value is sent over to a Raspberry Pi Pico W via Wi-Fi.
 The Pi calculates which of the strip's 20 preset colors (remappable) is the closest match (or turns the strip OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
 
-Before this, the IR frequencies for each button on the strip’s remote were recorded (see [`IR_codes`](IR_codes.md). These can be remapped easily if your strip uses a different IR protocol. 
+Before this, the IR frequencies for each button on the strip’s remote were recorded (see [`IR_codes`](IR_codes.md)). These can be remapped easily if your strip uses a different IR protocol. 
 
 ```mermaid
 graph LR;
