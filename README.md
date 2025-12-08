@@ -14,19 +14,21 @@
 <br><br><br><br><br><br>
 
 
+
 # How it works
 PC takes a screenshot using **mss** and resizes it with **Pillow** (200x200 by default), then converts the image to a single RGB value using **NumPy** with 3 selectable methods: `mean`, `median` or `dominant` (default: `mean`).  
 
 The RGB value is sent over to a Raspberry Pi Pico W via Wi-Fi.
 The Pi calculates which of the strip's 20 preset colors (remappable) is the closest match (or turns the strip OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
 
-Before this, the IR frequencies for each button on the strip’s remote were recorded (see `IR_codes.md`). These can be remapped easily if your strip uses a different IR protocol. 
+Before this, the IR frequencies for each button on the strip’s remote were recorded (see [`IR_codes`](IR_codes.md). These can be remapped easily if your strip uses a different IR protocol. 
 
 ```mermaid
 graph LR;
     PC-->Pi;
     Pi-->LED;
 ```
+
 
 
 # Features
@@ -38,6 +40,7 @@ graph LR;
 - Brightness Control
 - LED States on the Raspberry Pi Pico W
 <br><br><br><br><br><br>
+
 
 
 # Requirements
@@ -52,6 +55,7 @@ graph LR;
 - Duct Tape (Optional)
 <br><br>
 
+
 ### Software
 - Python 3.12+
 - IDE for PC Client (VScode works)
@@ -65,6 +69,7 @@ graph LR;
 <br><br><br>
 
 
+
 # Setup
 ### 1. Flash MicroPython to your Pico W  
 Download the latest `.uf2` from:  
@@ -73,8 +78,9 @@ https://micropython.org/download/rp2-pico-w/
 Then drag and drop onto the Pico's USB drive.
 <br><br><br><br>
 
+
 ### 2. Upload IR Libraries and Pi Scripts
-Using Thonny or mpremote, upload everything inside the repo's `Pi/` folder to the Pico.
+Using Thonny or mpremote, upload everything inside the repo's [`Pi/`](Pi/) folder to the Pico.
 <br><br>
 
 The Pico's root directory should now look like:  
@@ -89,6 +95,7 @@ The Pico's root directory should now look like:
 └── wifi.py
 ```  
 <br><br><br><br>
+
 
 ### 3. Configure Pico Wi-Fi
 Using Thonny or mpremote, edit `wifi.py` and add your Wi-Fi name and password:  
@@ -109,6 +116,7 @@ The PC will automatically detect the Pico via UDP broadcast.
 
 <br><br><br><br>
 
+
 ### 4. Wire the IR Receiver to the Pico
 Recommended wiring:  
 
@@ -125,6 +133,7 @@ Pin 34 (GP28) → DATA or IN
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
 <br><br><br><br>
 
+
 ### 5. Record your LED Remote's IR Codes
 Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LED remote pointing it at the receiver. 
 
@@ -134,6 +143,7 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 
 Take the captured codes and replace the existing ones in `ir_t.py` and then save the file.
 <br><br><br><br>
+
 
 ### 6. Wire the IR Transmitter Module
 Recommended wiring:
@@ -159,7 +169,6 @@ Connect USB. The Pico will boot and wait for incoming RGB values.
 <br><br><br><br>
 
 
-
 ### 8. Install PC dependencies
 Open a terminal and run:  
 
@@ -167,7 +176,7 @@ Open a terminal and run:
 <br><br><br><br>
 
 ### 9. Run the PC client
-Download everything inside the repo's `PC/` folder.  
+Download everything inside the repo's [`PC/`](PC/) folder.  
 
 Open the directory in your IDE and run `main.py`.  
 <br>
@@ -185,6 +194,7 @@ The Pico will translate them into IR signals and control the LED Strip.
   <img src="/images/setup.png" width="1000">
 </p>
 <br><br><br><br>
+
 
 
 # Credits
