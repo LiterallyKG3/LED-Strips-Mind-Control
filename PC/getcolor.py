@@ -12,7 +12,8 @@ def getcolor(method="mean", resize=(200, 200)):
         sct_img = sct.grab(monitor)
         im = Image.frombytes('RGB', sct_img.size, sct_img.rgb).resize((resize))
         arr = np.array(im)
-
+        
+        # methods
         if method == "mean":
             r = int(arr[:,:,0].mean())
             g = int(arr[:,:,1].mean())

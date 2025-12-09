@@ -20,7 +20,7 @@ def header():
 
 
     print()
-    print(BOLD + COLOR + "==== INITIATING PACKAGE DELIVERY ====" + RESET)
+    print(BOLD + COLOR + "==== INITIATING RGB DELIVERY ====" + RESET)
     print()
 
 # main
