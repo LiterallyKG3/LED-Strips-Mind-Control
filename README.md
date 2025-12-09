@@ -173,6 +173,8 @@ Connect USB. The Pico will boot and wait for incoming RGB values.
 ### 8. Install PC dependencies
 Open a terminal and run:  
 
+`Python -m pip install numpy pillow mss`  
+or:  
 `pip install numpy pillow mss`
 <br><br><br><br>
 
