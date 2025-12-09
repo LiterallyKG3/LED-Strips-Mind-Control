@@ -3,7 +3,7 @@ import time
 import led
 import uasyncio as asyncio
 
-# CONFIG
+# CONFIG #
 SSID = "ENTERSSIDHERE"           # Wi-Fi Name
 PASSWORD = "ENTERPASSWORDHERE"   # Wi-Fi Password
 CHECK_INTERVAL = 5               # Wi-Fi monitor check interval (seconds)

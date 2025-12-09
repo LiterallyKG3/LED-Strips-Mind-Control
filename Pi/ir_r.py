@@ -2,7 +2,7 @@ from machine import Pin
 from ir_rx.nec import NEC_8 # Change to desired protocol
 import time
 
-# CONFIG
+# CONFIG #
 IR_PIN = 28 # IR Receiver DATA GPIO Pin
 
 # receive IR code

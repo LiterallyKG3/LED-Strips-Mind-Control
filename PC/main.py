@@ -4,7 +4,7 @@ import getcolor
 import os
 import sys
 
-# CONFIG
+# CONFIG #
 UPDATE_INTERVAL = 0.05   # RGB Grab & Send interval (seconds) (0.05=50ms)
 
 # console theme & header

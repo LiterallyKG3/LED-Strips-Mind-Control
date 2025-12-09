@@ -2,7 +2,7 @@
 import socket
 import asyncio
 
-# CONFIG
+# CONFIG #
 DISCOVERY_PORT = 5005     # Pico discovery UDP port
 UDP_PORT = 6006           # RGB send UDP port
 DISCOVERY_INTERVAL = 1    # Pico discovery interval (seconds)

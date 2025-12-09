@@ -3,7 +3,7 @@ import socket
 from wifi import wlan
 import uasyncio as asyncio
 
-# CONFIG
+# CONFIG #
 UDP_PORT = 6006          # UDP RGB Receive port
 BROADCAST_PORT = 5005    # UDP IP Broadcast port
 

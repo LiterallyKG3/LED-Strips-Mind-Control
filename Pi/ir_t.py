@@ -5,7 +5,7 @@ import led
 from time import ticks_ms, ticks_diff
 import uasyncio as asyncio
 
-# CONFIG
+# CONFIG #
 IR_PIN = 28                 # IR Transmitter DATA GPIO Pin
 NEC_ADDR = 0x00             # NEC Address
 SEND_COOLDOWN = 0.1         # IR Transmit cooldown (seconds) (0.1=100ms)
@@ -17,7 +17,9 @@ BRIGHT_DEBOUNCE = 0.25      # Cooldown between brightness updates (seconds)
 
 nec = NEC(Pin(IR_PIN, Pin.OUT))
 
-# IR codes for ON/OFF, brightness, and FADE3
+# IR CODES #
+
+# IR codes for ON/OFF & brightness
 IR_ON = 0x40
 IR_OFF = 0x41
 
@@ -26,9 +28,7 @@ BRIGHT_50 = 0x13
 BRIGHT_75 = 0xf
 BRIGHT_100 = 0xb
 
-FADE_3 = 0xd
-
-# Map IR code to (R, G, B) color values
+# IR codes for RGB values
 IR_MAP = {
     0x58: (255, 0, 0),       # R0
     0x54: (255, 63, 0),      # R1
