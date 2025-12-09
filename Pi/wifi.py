@@ -3,21 +3,25 @@ import time
 import led
 import uasyncio as asyncio
 
-SSID = "ENTERSSIDHERE"
-PASSWORD = "ENTERPASSWORDHERE"
-CHECK_INTERVAL = 5
-CONNECTION_TIMEOUT = 120
+# CONFIG
+SSID = "ENTERSSIDHERE"           # Wi-Fi Name
+PASSWORD = "ENTERPASSWORDHERE"   # Wi-Fi Password
+CHECK_INTERVAL = 5               # Wi-Fi monitor check interval (seconds)
+CONNECTION_TIMEOUT = 120         # Wi-Fi connection timeout (seconds)
 
-wlan = network.WLAN(network.STA_IF) # create station
+wlan = network.WLAN(network.STA_IF) # create Wi-Fi station
 
+# connect to Wi-Fi
 async def connect():
     wlan.active(True) # enable Wi-Fi radio
     
+    # already connected
     if wlan.isconnected():
         print("Already connected :D IP:", wlan.ifconfig()[0])
         led.led_state = "wifi_connected"
         return
     
+    # connect
     print("Connecting to Wi-Fi...")
     wlan.connect(SSID, PASSWORD)
     led.led_state = "wifi_connecting"
@@ -35,7 +39,7 @@ async def connect():
     print("Connected :3 IP:", wlan.ifconfig()[0])
     led.led_state = "wifi_connected"
 
-
+# monitor Wi-Fi connection and reconnect if lost
 async def monitor():
     while True:
         if not wlan.isconnected():

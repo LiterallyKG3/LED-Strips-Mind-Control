@@ -3,7 +3,8 @@ import wifi
 import server
 import ir_t
 import uasyncio as asyncio
-    
+
+# run all async functions
 async def main():
     asyncio.create_task(led.led_manager())
     asyncio.create_task(wifi.connect())

@@ -4,7 +4,8 @@ import getcolor
 import os
 import sys
 
-UPDATE_INTERVAL = 0.05
+# CONFIG
+UPDATE_INTERVAL = 0.05   # RGB Grab & Send interval (seconds) (0.05=50ms)
 
 # console theme & header
 COLOR = "\033[38;5;208m"
@@ -12,12 +13,12 @@ BOLD = "\033[1m"
 RESET = "\033[0m"
 RGB_FMT = COLOR + "RGB:" + RESET + " " + BOLD + "{} {} {}" + RESET
 
+# header
 def header():
     if os.name == "nt":
         print(f"\033]0;LED-Strips-Mind-Control\007", end="", flush=True)
     if os.name != "nt":
         print("\33]0;LED-Strips-Mind-Control\a", end="", flush=True)
-
 
     print()
     print(BOLD + COLOR + "==== INITIATING RGB DELIVERY ====" + RESET)

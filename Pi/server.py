@@ -3,15 +3,17 @@ import socket
 from wifi import wlan
 import uasyncio as asyncio
 
-UDP_PORT = 6006
-BROADCAST_PORT = 5005
+# CONFIG
+UDP_PORT = 6006          # UDP RGB Receive port
+BROADCAST_PORT = 5005    # UDP IP Broadcast port
 
 last_rgb = None
 
+# Broadcast IP to PC via UDP
 async def broadcast_ip():
     while not wlan.isconnected():
         await asyncio.sleep(1)
-        
+
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     ip = wlan.ifconfig()[0]
@@ -25,7 +27,8 @@ async def broadcast_ip():
             print("IP Broadcast error:", e)
             led.led_state = "error"
             await asyncio.sleep(1)
-    
+
+# Receive RGB values with UDP
 async def udp():
     global last_rgb
     
@@ -62,6 +65,7 @@ async def udp():
 # with:
 # asyncio.create_task(server.run_http_server())
 # to use.
+# Also see HTTP server fallback in PC/sendrgb.py
 
 async def http(reader, writer):
     global last_rgb

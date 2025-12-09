@@ -5,6 +5,7 @@ led = Pin("LED", Pin.OUT)
 
 led_state = "startup"
 
+# Pi LED states
 async def led_manager():
     global led_state
 

@@ -2,27 +2,31 @@
 import socket
 import asyncio
 
-BROADCAST_PORT = 5005
-UDP_PORT = 6006
-DISCOVERY_INTERVAL = 1
-RETRY_DELAY = 0.05
+# CONFIG
+DISCOVERY_PORT = 5005     # Pico discovery UDP port
+UDP_PORT = 6006           # RGB send UDP port
+DISCOVERY_INTERVAL = 1    # Pico discovery interval (seconds)
+RETRY_DELAY = 0.05        # RGB send error retry delay (seconds) (0.05=50ms)
 
 pico_ip = None
 last_sent_rgb = None
 
+# send UDP socket
 send_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 send_sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 send_sock.setblocking(False)
 
 discovery_sock = None
 
+# discover pico via UDP broadcast
 async def discover_pico():
     global pico_ip, discovery_sock
 
     if discovery_sock is None:
+        # pico discovery UDP sockets
         discovery_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         discovery_sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        discovery_sock.bind(('', BROADCAST_PORT))
+        discovery_sock.bind(('', DISCOVERY_PORT))
         discovery_sock.setblocking(False)
 
     while True:
@@ -38,6 +42,7 @@ async def discover_pico():
             print("Discovery error:", e)
         await asyncio.sleep(DISCOVERY_INTERVAL)
 
+# send RGB with UDP
 async def udp(r, g, b):
     global pico_ip, last_sent_rgb
 
@@ -68,6 +73,7 @@ async def udp(r, g, b):
 # at the top of PC/sendrgb.py, uncomment:
 # # import requests # HTTP fallback
 # to use.
+# Also see HTTP server fallback in Pi/server.py
 
 async def http(r, g, b):
 

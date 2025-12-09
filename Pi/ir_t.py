@@ -6,14 +6,14 @@ from time import ticks_ms, ticks_diff
 import uasyncio as asyncio
 
 # CONFIG
-IR_PIN = 28
-NEC_ADDR = 0x00
-SEND_COOLDOWN = 0.1
-FUNCTION_SLEEPS = 0.12
-FADE_STEPS = 3
-FADE_MIN_SLEEP = 0.08
-BRIGHTNESS_SMOOTHING = 0.2
-BRIGHT_DEBOUNCE = 0.25
+IR_PIN = 28                 # IR Transmitter DATA GPIO Pin
+NEC_ADDR = 0x00             # NEC Address
+SEND_COOLDOWN = 0.1         # IR Transmit cooldown (seconds) (0.1=100ms)
+FUNCTION_SLEEPS = 0.12      # Time between IR function sleeps (seconds)
+FADE_STEPS = 3              # Steps between color transition fades (step count)
+FADE_MIN_SLEEP = 0.08       # Cooldown between fade steps (seconds)
+BRIGHTNESS_SMOOTHING = 0.2  # Smoothing between brightness updates (percentage) (0.2=20%)
+BRIGHT_DEBOUNCE = 0.25      # Cooldown between brightness updates (seconds)
 
 nec = NEC(Pin(IR_PIN, Pin.OUT))
 
@@ -30,26 +30,26 @@ FADE_3 = 0xd
 
 # Map IR code to (R, G, B) color values
 IR_MAP = {
-    0x58: (255, 0, 0), # R0
-    0x54: (255, 63, 0), # R1
-    0x50: (255, 126, 0), # R2
-    0x1c: (255, 189, 0), # R3
-    0x18: (255, 255, 0), # R4
-    0x59: (0, 255, 0), # G0
-    0x55: (0, 255, 63), # G1
-    0x51: (0, 255, 126), # G2
-    0x1d: (0, 255, 189), # G3
-    0x19: (0, 255, 255), # G4
-    0x45: (0, 0, 255), # B0
-    0x49: (63, 0, 255), # B1
-    0x4d: (126, 0, 255), # B2
-    0x1e: (189, 0, 255), # B3
-    0x1a: (255, 0, 255), # B4
-    0x44: (255, 255, 255), # W0
-    0x48: (215, 190, 255), # W1
-    0x4c: (185, 135, 255), # W2
-    0x1f: (176, 184, 255), # W3
-    0x1b: (43, 202, 255), # W4
+    0x58: (255, 0, 0),       # R0
+    0x54: (255, 63, 0),      # R1
+    0x50: (255, 126, 0),     # R2
+    0x1c: (255, 189, 0),     # R3
+    0x18: (255, 255, 0),     # R4
+    0x59: (0, 255, 0),       # G0
+    0x55: (0, 255, 63),      # G1
+    0x51: (0, 255, 126),     # G2
+    0x1d: (0, 255, 189),     # G3
+    0x19: (0, 255, 255),     # G4
+    0x45: (0, 0, 255),       # B0
+    0x49: (63, 0, 255),      # B1
+    0x4d: (126, 0, 255),     # B2
+    0x1e: (189, 0, 255),     # B3
+    0x1a: (255, 0, 255),     # B4
+    0x44: (255, 255, 255),   # W0
+    0x48: (215, 190, 255),   # W1
+    0x4c: (185, 135, 255),   # W2
+    0x1f: (176, 184, 255),   # W3
+    0x1b: (43, 202, 255),    # W4
 }
 
 # states
