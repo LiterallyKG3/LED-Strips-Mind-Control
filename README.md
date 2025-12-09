@@ -101,6 +101,7 @@ The Pico's root directory should now look like:
 Using Thonny or mpremote, edit `wifi.py` and add your Wi-Fi name and password:  
 
 ```
+# CONFIG #
 SSID = "ENTERSSIDHERE"  
 PASSWORD = "ENTERPASSWORDHERE"  
 ```
@@ -141,7 +142,7 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 > If your strip doesn't use NEC-8, change `from ir_rx.nec import NEC_8` in `ir_r` to the protocol your LED Strip uses.
 <br>
 
-Take the captured codes and replace the existing ones in `ir_t.py` and then save the file.
+Take the captured codes and replace the existing ones in `ir_t.py` (under `# IR CODES #`) and then save the file.
 <br><br><br><br>
 
 
@@ -155,7 +156,7 @@ Pin 34 (GP28) → DATA or IN
 ```
 
 > [!WARNING]
-> You'll need to change `IR_PIN` in `ir_t` if you connect DATA to another GPIO pin
+> You'll need to change `IR_PIN` in `ir_t` (under `# CONFIG #`) if you connect DATA to another GPIO pin
 <br>
 
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)  
