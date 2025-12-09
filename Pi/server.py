@@ -48,7 +48,7 @@ async def udp():
                 last_rgb = (r, g, b)
                 print("Received RGB:", last_rgb)
         except OSError:
-            await asyncio.sleep(0.001)
+            await asyncio.sleep(0.005)
         except Exception as e:
             print("Server error:", e)
             led.led_state = "error"

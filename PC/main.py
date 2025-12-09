@@ -10,9 +10,11 @@ UPDATE_INTERVAL = 0.05
 COLOR = "\033[38;5;208m"
 BOLD = "\033[1m"
 RESET = "\033[0m"
+RGB_FMT = COLOR + "RGB:" + RESET + " " + BOLD + "{} {} {}" + RESET
 
 def header():
-    os.system("title LED-Strips-Mind-Control")
+    if os.name == "nt":
+        print(f"\033]0;LED-Strips-Mind-Control\007", end="", flush=True)
     if os.name != "nt":
         print("\33]0;LED-Strips-Mind-Control\a", end="", flush=True)
 
@@ -36,7 +38,7 @@ async def main():
 
         if last_rgb != (r, g, b):
 
-            print(COLOR + "RGB:" + RESET, f"{BOLD}{r} {g} {b}{RESET}")
+            print(RGB_FMT.format(r, g, b))
 
             await sendrgb.udp(r, g, b)
 
