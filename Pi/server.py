@@ -32,11 +32,14 @@ async def broadcast_ip():
 async def udp():
     global last_rgb
     
+    # Wi-Fi not connected yet
     while not wlan.isconnected():
         print("Server waiting for Wi-Fi...")
         led.led_state = "wifi_connecting"
-        await asyncio.sleep(5)
+        await asyncio.sleep(1)
     
+    # start server
+    print("Starting server...")
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind(('0.0.0.0', UDP_PORT))
     s.setblocking(False)
@@ -44,6 +47,18 @@ async def udp():
     led.led_state = "server_running"
         
     while True:
+
+        # Wi-Fi disconnected
+        if not wlan.isconnected():
+            print("Wi-Fi connection lost. Pausing server...")
+            led.led_state = "wifi_connecting"
+            while not wlan.isconnected():
+                await asyncio.sleep(1)
+            
+            # Wi-Fi restored
+            print("Wi-Fi connection restored. Resuming server...")
+            led.led_state = "server_running"
+
         try:
             data, addr = s.recvfrom(1024)
             r, g, b = map(int, data.decode().split(","))

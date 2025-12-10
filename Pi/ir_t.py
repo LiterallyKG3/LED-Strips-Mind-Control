@@ -223,7 +223,6 @@ async def update_color(target_rgb):
     if code is not None:
         await fade_to_color(code)
 
-
 # main loop
 async def main():
     

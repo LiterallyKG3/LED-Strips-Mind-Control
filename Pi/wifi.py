@@ -25,7 +25,8 @@ async def connect():
     print("Connecting to Wi-Fi...")
     wlan.connect(SSID, PASSWORD)
     led.led_state = "wifi_connecting"
-    
+
+    # timeout
     start = time.time()
     while not wlan.isconnected():
         if time.time() - start > CONNECTION_TIMEOUT:

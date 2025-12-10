@@ -63,6 +63,7 @@ graph LR;
 - MicroPython firmware for the Pico W
 - Windows or Linux
 - Python Packages:
+  - `colorama`
   - `pillow`
   - `numpy`
   - `mss`
@@ -173,9 +174,9 @@ Connect USB. The Pico will boot and wait for incoming RGB values.
 ### 8. Install PC dependencies
 Open a terminal and run:  
 
-`Python -m pip install numpy pillow mss`  
+`Python -m pip install numpy pillow mss colorama`  
 or:  
-`pip install numpy pillow mss`
+`pip install numpy pillow mss colorama`
 <br><br><br><br>
 
 ### 9. Run the PC client
@@ -202,6 +203,7 @@ The Pico will translate them into IR signals and control the LED Strip.
 
 # Credits
 [IR Libraries](https://github.com/peterhinch/micropython_ir)  
+[colorama](https://pypi.org/project/colorama/)  
 [NumPy](https://numpy.org)   
 [Pillow](https://pypi.org/project/pillow/)  
 [mss](https://pypi.org/project/mss/)

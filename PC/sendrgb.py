@@ -11,19 +11,18 @@ RETRY_DELAY = 0.05        # RGB send error retry delay (seconds) (0.05=50ms)
 pico_ip = None
 last_sent_rgb = None
 
-# send UDP socket
+# RGB send UDP socket
 send_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 send_sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 send_sock.setblocking(False)
 
+# discover pico via UDP broadcast
 discovery_sock = None
 
-# discover pico via UDP broadcast
 async def discover_pico():
     global pico_ip, discovery_sock
 
     if discovery_sock is None:
-        # pico discovery UDP sockets
         discovery_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         discovery_sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
         discovery_sock.bind(('', DISCOVERY_PORT))

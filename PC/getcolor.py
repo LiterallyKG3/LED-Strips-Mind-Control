@@ -7,13 +7,13 @@ def getcolor(method="mean", resize=(200, 200)):
     # resize: scale down to increase speed, up to increase accuracy
 
     with mss.mss() as sct:
-        # grab monitor screenshot and resize
+        # grab monitor screenshot with mss and resize with pillow
         monitor = sct.monitors[1] if len(sct.monitors) > 1 else sct.monitors[0]
         sct_img = sct.grab(monitor)
         im = Image.frombytes('RGB', sct_img.size, sct_img.rgb).resize((resize))
         arr = np.array(im)
         
-        # methods
+        # RGB grab methods using NumPy
         if method == "mean":
             r = int(arr[:,:,0].mean())
             g = int(arr[:,:,1].mean())
