@@ -16,7 +16,7 @@ send_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 send_sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 send_sock.setblocking(False)
 
-# discover pico via UDP broadcast
+# discover Pico via UDP broadcast
 discovery_sock = None
 
 async def discover_pico():
