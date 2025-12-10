@@ -60,6 +60,8 @@ async def udp(r, g, b):
         last_sent_rgb = rgb_tuple
     except OSError as e:
         print("Error sending RGB:", e)
+        print("Rediscovering Pico IP...")
+        pico_ip = None
         await asyncio.sleep(RETRY_DELAY)
 
 '''
