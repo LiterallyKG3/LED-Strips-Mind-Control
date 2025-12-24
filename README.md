@@ -176,7 +176,7 @@ Open a terminal and run:
 
 `Python -m pip install numpy pillow mss colorama`  
   
-Alternatively run:  
+Alternatively, run:  
   
 `pip install numpy pillow mss colorama`
 <br><br><br><br>
