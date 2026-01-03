@@ -1,6 +1,6 @@
-### Command, IRcode, RGB
+## Command, IRcode, RGB
 
-## Colors
+### Colors
 - R0, 0x58, (255, 0, 0)
 - R1, 0x54, (255, 63, 0)
 - R2, 0x50, (255, 126, 0)
@@ -25,11 +25,11 @@
 - W3, 0x1f, (176, 184, 255)
 - W4, 0x1b, (43, 202, 255)
 
-## OFF/ON
+### OFF/ON
 - OFF, 0x41
 - ON, 0x40  
 
-## Brightness
+### Brightness
 - BRT DOWN, 0x5d
 - BRT UP, 0x5c
 - BRT 25%, 0x17
@@ -37,7 +37,7 @@
 - BRT 75%, 0xf
 - BRT 100%, 0xb  
 
-## Built-in LED Strip animation commands
+### Built-in LED Strip animation commands
 - JUMP3, 0x15
 - JUMP7, 0x11
 - FADE3, 0xd
