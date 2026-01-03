@@ -144,10 +144,10 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 <br>
 
 Record the captured codes and map them to your LED Strip's colors/commands (see [`IR_codes`](IR_codes.md) for a template)
-<br>
+<br><br>
 
 Replace the existing IR codes and RGB values in `ir_t.py` (under `# IR CODES #`) according to your LED Strip.
-<br>
+<br><br>
 
 Save the file.
 <br><br><br><br>
