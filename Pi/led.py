@@ -13,8 +13,10 @@ async def led_manager():
         s = led_state
 
         if s == "startup":
-            led.toggle()
-            await asyncio.sleep(2)
+            led.on()
+            await asyncio.sleep(0.1)
+            led.off()
+            await asyncio.sleep(0.1)
 
         elif s == "wifi_connecting":
             led.on()
@@ -52,5 +54,7 @@ async def led_manager():
 
         else:
             # fallback
-            led.toggle()
+            led.on()
+            await asyncio.sleep(0.1)
+            led.off()
             await asyncio.sleep(0.1)

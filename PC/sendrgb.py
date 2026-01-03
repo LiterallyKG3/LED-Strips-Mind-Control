@@ -63,6 +63,9 @@ async def udp(r, g, b):
         print("Rediscovering Pico IP...")
         pico_ip = None
         await asyncio.sleep(RETRY_DELAY)
+    except Exception as e:
+        print("Unexpected RGB send error:", e)
+        await asyncio.sleep(RETRY_DELAY)
 
 '''
 # HTTP fallback

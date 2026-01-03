@@ -19,10 +19,11 @@ nec = NEC(Pin(IR_PIN, Pin.OUT))
 
 # IR CODES #
 
-# IR codes for ON/OFF & brightness
+# IR codes for ON/OFF
 IR_ON = 0x40
 IR_OFF = 0x41
 
+# IR codes for brightness
 BRIGHT_25 = 0x17
 BRIGHT_50 = 0x13
 BRIGHT_75 = 0xf

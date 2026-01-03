@@ -7,7 +7,7 @@ import uasyncio as asyncio
 SSID = "ENTERSSIDHERE"           # Wi-Fi Name
 PASSWORD = "ENTERPASSWORDHERE"   # Wi-Fi Password
 CHECK_INTERVAL = 5               # Wi-Fi monitor check interval (seconds)
-CONNECTION_TIMEOUT = 120         # Wi-Fi connection timeout (seconds)
+CONNECTION_TIMEOUT = 20         # Wi-Fi connection timeout (seconds)
 
 wlan = network.WLAN(network.STA_IF) # create Wi-Fi station
 

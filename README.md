@@ -143,7 +143,13 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 > If your strip doesn't use NEC-8, change `from ir_rx.nec import NEC_8` in `ir_r` to the protocol your LED Strip uses.
 <br>
 
-Take the captured codes and replace the existing ones in `ir_t.py` (under `# IR CODES #`) and then save the file.
+Record the captured codes and map them to your LED Strip's colors/commands (see [`IR_codes`](IR_codes.md) for a template)
+<br>
+
+Replace the existing IR codes and RGB values in `ir_t.py` (under `# IR CODES #`) according to your LED Strip.
+<br>
+
+Save the file.
 <br><br><br><br>
 
 
