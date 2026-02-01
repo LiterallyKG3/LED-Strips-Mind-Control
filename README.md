@@ -52,7 +52,6 @@ graph LR;
 - Jumper Wires (For connecting the modules)
 - Generic IR-controlled LED Strip (NEC-8 protocol in this repo, but easily replaceable)
 - LED Strip Remote
-- Duct Tape (Optional)
 <br><br>
 
 
@@ -140,13 +139,16 @@ You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.co
 Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LED remote pointing it at the receiver. 
 
 >[!NOTE]
-> If your strip doesn't use NEC-8, change `from ir_rx.nec import NEC_8` in `ir_r` to the protocol your LED Strip uses.
+> If your strip doesn't use NEC-8, change `NEC_8` in the commented lines in `ir_r` to the protocol your LED Strip uses.
 <br>
 
-Record the captured codes and map them to your LED Strip's colors/commands (see [`IR_codes`](IR_codes.md) for a template)
+Record the captured codes and map them to your LED Strip's colors/commands (see [`IR_codes`](IR_codes.md) for a template of two tested LED remotes)
 <br><br>
 
 Replace the existing IR codes and RGB values in `ir_t.py` (under `# IR CODES #`) according to your LED Strip.
+<br><br>
+
+You might also need to change `NEC_ADDR` in case your LED Strip uses a different protocol/address and/or disable the brightness function in case your LED strip doesn't support brightness control or doesn't preserve the brightness level in between color changes, you may make those or any other tweaks in the CONFIG found in `ir_t.py` according to your LED Strip.
 <br><br>
 
 Save the file.
