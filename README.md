@@ -19,9 +19,11 @@
 PC takes a screenshot using **mss** and resizes it with **Pillow** (200x200 by default), then converts the image to a single RGB value using **NumPy** with 3 selectable methods: `mean`, `median` or `dominant` (default: `mean`).  
 
 The RGB value is sent over to a Raspberry Pi Pico W via Wi-Fi.
-The Pi calculates which of the strip's 20 preset colors (remappable) is the closest match (or turns the strip OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
+The Pi calculates which of the LED Strip's preset colors is the closest match (or turns the strip OFF if image is near black), and blasts the corresponding IR frequencies to the LED Strip.
 
-Before this, the IR frequencies for each button on the strip’s remote were recorded (see [`IR_codes`](IR_codes.md)). These can be remapped easily if your strip uses a different IR protocol. 
+Controlling the LED Strip required the recording of the IR codes for each button on the remote, this is done with an IR Receiver module connected to the Raspberry Pi in this repo.
+
+Two different LED Strips have been tested and the IR codes for them were recorded and mapped to RGB ranges (see [`IR_codes`](IR_codes.md)).
 
 ```mermaid
 graph LR;
@@ -37,7 +39,7 @@ graph LR;
 - Automatic IP Broadcast and discovery
 - Customizable IR transmit values
 - Smooth fade transitions between colors
-- Brightness Control
+- Brightness Control (4 levels, toggleable)
 - LED States on the Raspberry Pi Pico W
 <br><br><br><br><br><br>
 
@@ -129,6 +131,7 @@ Pin 34 (GP28) → DATA or IN
 
 > [!WARNING]
 > You'll need to change `IR_PIN` in `ir_r` if you connect DATA to another GPIO pin
+
 <br>
 
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)
@@ -140,22 +143,30 @@ Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LE
 
 >[!NOTE]
 > If your strip doesn't use NEC-8, change `NEC_8` in the commented lines in `ir_r` to the protocol your LED Strip uses.
+
 <br>
 
-Record the captured codes and map them to your LED Strip's colors/commands (see [`IR_codes`](IR_codes.md) for a template of two tested LED remotes)
+Record the captured codes and map them to your LED Strip's colors/commands. Also record the IR address as it is required for transmission (see [`IR_codes`](IR_codes.md) for a template of two tested LED remotes).
+<br><br><br><br>
+
+
+### 6. Edit ir_t.py according to your LED Strip
+Using Thonny or mpremote, replace the existing IR codes/RGB ranges found in `ir_t.py` (under `# IR CODES #`) with the IR codes you recorded.
 <br><br>
 
-Replace the existing IR codes and RGB values in `ir_t.py` (under `# IR CODES #`) according to your LED Strip.
-<br><br>
+You may also tweak the values under `# CONFIG #` according to your preference and your LED Strip's capabilities and NEC address.
+<br>
 
-You might also need to change `NEC_ADDR` in case your LED Strip uses a different protocol/address and/or disable the brightness function in case your LED strip doesn't support brightness control or doesn't preserve the brightness level in between color changes, you may make those or any other tweaks in the CONFIG found in `ir_t.py` according to your LED Strip.
-<br><br>
+>[!NOTE]
+> If you wish to only send color updates to the LED Strip and don't want brightness control, do not delete the brightness IR codes as doing that will lead to an error, instead simply disable the brightness updates by setting `DISABLE_BRIGHTNESS` to `True`
+
+<br>
 
 Save the file.
 <br><br><br><br>
 
 
-### 6. Wire the IR Transmitter Module
+### 7. Wire the IR Transmitter Module
 Recommended wiring:
 
 ```
@@ -166,6 +177,7 @@ Pin 34 (GP28) → DATA or IN
 
 > [!WARNING]
 > You'll need to change `IR_PIN` in `ir_t` (under `# CONFIG #`) if you connect DATA to another GPIO pin
+
 <br>
 
 You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.com/picow/PicoW-A4-Pinout.pdf)  
@@ -174,12 +186,13 @@ You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.co
 Make sure the transmitter points at the LED Strip's IR receiver.
 <br><br><br><br>
 
-### 7. Power the Pico
+
+### 8. Power the Pico
 Connect USB. The Pico will boot and wait for incoming RGB values.
 <br><br><br><br>
 
 
-### 8. Install PC dependencies
+### 9. Install PC dependencies
 Open a terminal and run:  
 
 `Python -m pip install numpy pillow mss colorama`  
@@ -189,7 +202,8 @@ Alternatively, run:
 `pip install numpy pillow mss colorama`
 <br><br><br><br>
 
-### 9. Run the PC client
+
+### 10. Run the PC client
 Download everything inside the repo's `PC/` folder.  
 
 Open the directory in your IDE and run `main.py`.  
