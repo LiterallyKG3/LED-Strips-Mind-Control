@@ -115,7 +115,7 @@ The PC will automatically detect the Pico via UDP broadcast.
 <br><br>
 
 >[!IMPORTANT]
-> The Pico has to be connected to the same Wi-Fi network as your PC.
+> The Pico has to be connected to the same Wi-Fi network as your PC
 
 <br><br><br><br>
 
@@ -157,7 +157,7 @@ Using Thonny or mpremote, replace the existing IR codes/RGB ranges found in `ir_
 You may also tweak the values under `# CONFIG #` according to your preference and your LED Strip's capabilities and NEC address.
 <br>
 
->[!NOTE]
+>[!IMPORTANT]
 > If you wish to only send color updates to the LED Strip and don't want brightness control, do not delete the brightness IR codes as doing that will lead to an error, instead simply disable the brightness updates by setting `DISABLE_BRIGHTNESS` to `True`
 
 <br>
@@ -210,7 +210,7 @@ Open the directory in your IDE and run `main.py`.
 <br>
 
 >[!NOTE]
-> Make sure to allow Python through your firewall so the PC client can communicate with the Pico over your network.
+> Make sure to allow Python through your firewall so the PC client can communicate with the Pico over your network
 
 <br>
 
