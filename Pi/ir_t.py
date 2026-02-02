@@ -30,10 +30,6 @@ BRIGHT_50 = 0x13
 BRIGHT_75 = 0xf
 BRIGHT_100 = 0xb
 
-# Music Mode not playing
-FADE3 = 0xd
-SLOW = 0x12
-
 # IR codes for RGB values
 IR_MAP = {
     0x58: (255, 0, 0),       # R0
