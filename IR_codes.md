@@ -86,6 +86,9 @@
 - FADE, 0x13
 - SMOOTH, 0x17
 
+### Note
+The crossed buttons on the tested LED output the same color as the ones above hence the removal.
+
 <p align="left">
   <img src="/images/remote_NEC16.png" width="400">
 </p>
