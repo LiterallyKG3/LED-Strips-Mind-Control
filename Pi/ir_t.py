@@ -13,7 +13,7 @@ FUNCTION_SLEEPS = 0.12      # Time between IR function sleeps (seconds)
 FADE_STEPS = 3              # Steps between color transition fades (step count)
 FADE_MIN_SLEEP = 0.08       # Cooldown between fade steps (seconds)
 BRIGHTNESS_SMOOTHING = 0.5  # Smoothing between brightness updates (percentage) (0.5=50%)
-BRIGHT_DEBOUNCE = 0.25      # Cooldown between brightness updates (seconds) *
+BRIGHT_DEBOUNCE = 0.25      # Cooldown between brightness updates (seconds)
 DISABLE_BRIGHTNESS = False  # Set to True to completely disable brightness updates
 
 nec = NEC(Pin(IR_PIN, Pin.OUT))
