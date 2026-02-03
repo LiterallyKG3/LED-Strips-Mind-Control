@@ -130,7 +130,7 @@ Pin 34 (GP28) → DATA or IN
 ```
 
 > [!WARNING]
-> You'll need to change `IR_PIN` in `ir_r` if you connect DATA to another GPIO pin
+> You'll need to change `IR_PIN` in `ir_r.py` if you connect DATA to another GPIO pin
 
 <br>
 
@@ -139,10 +139,10 @@ You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.co
 
 
 ### 5. Record your LED Remote's IR Codes
-Using Thonny or mpremote, run the `ir_r` script and press the buttons on your LED remote pointing it at the receiver. 
+Using Thonny or mpremote, run the `ir_r.py` script and press the buttons on your LED remote pointing it at the receiver. 
 
 >[!NOTE]
-> If your strip doesn't use NEC-8, change `NEC_8` in the commented lines in `ir_r` to the protocol your LED Strip uses.
+> If your strip doesn't use NEC-8, change `NEC_8` in the commented lines in `ir_r.py` to the protocol your LED Strip uses.
 
 <br>
 
@@ -176,7 +176,7 @@ Pin 34 (GP28) → DATA or IN
 ```
 
 > [!WARNING]
-> You'll need to change `IR_PIN` in `ir_t` (under `# CONFIG #`) if you connect DATA to another GPIO pin
+> You'll need to change `IR_PIN` in `ir_t.py` (under `# CONFIG #`) if you connect DATA to another GPIO pin
 
 <br>
 
