@@ -23,7 +23,7 @@ The Pi calculates which of the LED Strip's preset colors is the closest match (o
 
 Controlling the LED Strip required the recording of the IR codes for each button on the remote, this is done with an IR Receiver module connected to the Raspberry Pi in this repo.
 
-Two different LED Strips have been tested and the IR codes for them were recorded and mapped to RGB ranges (see [`IR_codes`](IR_codes.md)).
+Two different LED Strips have been tested and the IR codes for them were recorded and mapped to RGB values (see [`IR_codes`](IR_codes.md)).
 
 ```mermaid
 graph LR;
@@ -151,10 +151,10 @@ Record the captured codes and map them to your LED Strip's colors/commands. Also
 
 
 ### 6. Edit ir_t.py according to your LED Strip
-Using Thonny or mpremote, replace the existing IR codes/RGB ranges found in `ir_t.py` (under `# IR CODES #`) with the IR codes you recorded.
+Using Thonny or mpremote, replace the existing IR codes/RGB values found in `ir_t.py` (under `# IR CODES #`) with the ones you recorded.
 <br><br>
 
-You may also tweak the values under `# CONFIG #` according to your preference and your LED Strip's capabilities and NEC address.
+You may also tweak the values under `# CONFIG #` according to your preference and/or your LED Strip's capabilities and NEC address.
 <br>
 
 >[!IMPORTANT]
