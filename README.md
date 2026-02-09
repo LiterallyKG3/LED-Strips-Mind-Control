@@ -142,7 +142,7 @@ You can find the Pico W Pinout Diagram [here.](https://datasheets.raspberrypi.co
 Using Thonny or mpremote, run the `ir_r.py` script and press the buttons on your LED remote pointing it at the receiver. 
 
 >[!NOTE]
-> If your strip doesn't use NEC-8, change `NEC_8` in the commented lines in `ir_r.py` to the protocol your LED Strip uses.
+> If your strip doesn't use NEC-8, change `NEC_8` in the commented lines in `ir_r.py` to the protocol your LED Strip uses
 
 <br>
 
